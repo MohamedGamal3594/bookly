@@ -1,5 +1,5 @@
-import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/core/utils/app_theme.dart';
+import 'package:bookly/core/utils/router.dart';
+import 'package:bookly/core/utils/theme.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class BooklyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      theme: AppTheme.lightTheme,
+      theme: AppTheme.theme,
       darkTheme: AppTheme.darkTheme,
       routerConfig: AppRouter.router,
     );
