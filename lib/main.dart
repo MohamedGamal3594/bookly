@@ -1,8 +1,16 @@
 import 'package:bookly/core/utils/app_router.dart';
+import 'package:bookly/core/utils/app_theme.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const BooklyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const BooklyApp(),
+    ),
+  );
 }
 
 class BooklyApp extends StatelessWidget {
@@ -10,6 +18,13 @@ class BooklyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: AppRouter.router);
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      routerConfig: AppRouter.router,
+    );
   }
 }

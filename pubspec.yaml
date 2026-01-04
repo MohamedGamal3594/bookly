@@ -7,6 +7,7 @@ environment:
   sdk: ^3.10.4
 
 dependencies:
+  device_preview: ^1.3.1
   flutter:
     sdk: flutter
   go_router: ^17.0.1
@@ -18,3 +19,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Tagesschrift
+      fonts:
+        - asset: assets/fonts/Tagesschrift.ttf
