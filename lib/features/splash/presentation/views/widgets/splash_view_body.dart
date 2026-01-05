@@ -1,5 +1,7 @@
 import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/core/utils/router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -14,20 +16,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
   late final Animation<Offset> _animation;
   @override
   void initState() {
-    startSlideAnimation();
     super.initState();
-  }
-
-  void startSlideAnimation() async {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    );
-    _animation = Tween<Offset>(begin: const Offset(-10, 0), end: Offset.zero)
-        .animate(
-          CurvedAnimation(parent: _animationController, curve: Curves.ease),
-        );
-    await _animationController.forward();
+    _goToHomeView();
   }
 
   @override
@@ -41,6 +31,26 @@ class _SplashViewBodyState extends State<SplashViewBody>
         ),
       ),
     );
+  }
+
+  void _goToHomeView() async {
+    await _startSlideAnimation();
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (mounted) {
+      context.go(AppRouter.homeView);
+    }
+  }
+
+  Future<void> _startSlideAnimation() async {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+    _animation = Tween<Offset>(begin: const Offset(0, -10), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _animationController, curve: Curves.ease),
+        );
+    await _animationController.forward();
   }
 
   @override

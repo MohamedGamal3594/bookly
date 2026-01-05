@@ -10,6 +10,7 @@ dependencies:
   device_preview: ^1.3.1
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.4.7
   go_router: ^17.0.1
 
 dev_dependencies:
@@ -23,3 +24,10 @@ flutter:
     - family: Tagesschrift
       fonts:
         - asset: assets/fonts/Tagesschrift.ttf
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#100B20"
+  android_12:
+    color: "#ffffff"
+    color_dark: "#100B20"
