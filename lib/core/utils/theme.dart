@@ -7,10 +7,8 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.primaryLightColor,
-    textTheme:
-        TextTheme(
-          displaySmall: TextStyle(fontFamily: AppFonts.logoFont, fontSize: 64),
-        ).apply(
+    textTheme: TextTheme(displayLarge: TextStyle(fontFamily: AppFonts.logoFont))
+        .apply(
           displayColor: AppColors.primaryDarkColor,
           bodyColor: AppColors.primaryDarkColor,
         ),
