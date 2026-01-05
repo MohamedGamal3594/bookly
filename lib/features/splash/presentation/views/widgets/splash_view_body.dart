@@ -13,7 +13,7 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
-  late final Animation<Offset> _animation;
+  late final Animation<double> _animation;
   @override
   void initState() {
     super.initState();
@@ -22,8 +22,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   Widget build(BuildContext context) {
-    return SlideTransition(
-      position: _animation,
+    return FadeTransition(
+      opacity: _animation,
       child: Center(
         child: Text(
           AppConstants.kAppName,
@@ -44,12 +44,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Future<void> _startSlideAnimation() async {
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 1, milliseconds: 500),
     );
-    _animation = Tween<Offset>(begin: const Offset(0, -10), end: Offset.zero)
-        .animate(
-          CurvedAnimation(parent: _animationController, curve: Curves.ease),
-        );
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.ease,
+    );
     await _animationController.forward();
   }
 
