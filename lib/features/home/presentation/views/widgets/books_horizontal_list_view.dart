@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+
+class BooksHorizontalListView extends StatelessWidget {
+  const BooksHorizontalListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).longestSide * 0.3,
+      child: ListView.separated(
+        padding: const .symmetric(horizontal: 16),
+        scrollDirection: .horizontal,
+        itemCount: 10,
+        separatorBuilder: (context, index) => const SizedBox(width: 16),
+        itemBuilder: (context, index) => const _BookListItem(),
+      ),
+    );
+  }
+}
+
+class _BookListItem extends StatelessWidget {
+  const _BookListItem();
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 0.65,
+      child: ClipRRect(
+        borderRadius: .circular(16),
+        child: Image.network(
+          'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
+          fit: .cover,
+        ),
+      ),
+    );
+  }
+}
