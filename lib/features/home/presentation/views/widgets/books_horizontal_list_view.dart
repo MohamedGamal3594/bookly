@@ -1,3 +1,4 @@
+import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class BooksHorizontalListView extends StatelessWidget {
@@ -6,9 +7,12 @@ class BooksHorizontalListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).longestSide * 0.3,
+      height: context.viewSize.longestSide * 0.3,
       child: ListView.separated(
-        padding: const .symmetric(horizontal: 16),
+        padding: .only(
+          left: context.safeLeftPadding,
+          right: context.safeRightPadding,
+        ),
         scrollDirection: .horizontal,
         itemCount: 10,
         separatorBuilder: (context, index) => const SizedBox(width: 16),

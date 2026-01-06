@@ -19,7 +19,6 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.primaryLight,
       foregroundColor: AppColors.primaryDark,
-      surfaceTintColor: AppColors.transparent,
       iconTheme: IconThemeData(size: 32, color: AppColors.primaryDark),
     ),
   );
@@ -34,7 +33,6 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.primaryDark,
       foregroundColor: AppColors.primaryLight,
-      surfaceTintColor: AppColors.transparent,
       iconTheme: IconThemeData(size: 32, color: AppColors.primaryLight),
     ),
   );

@@ -7,8 +7,13 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text(AppConstants.kAppName),
-      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+      title: Row(
+        mainAxisAlignment: .spaceBetween,
+        children: [
+          const Text(AppConstants.kAppName),
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        ],
+      ),
       floating: true,
     );
   }

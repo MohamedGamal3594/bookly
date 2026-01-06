@@ -1,4 +1,5 @@
 import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:bookly/core/utils/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       child: Center(
         child: Text(
           AppConstants.kAppName,
-          style: Theme.of(context).textTheme.displayLarge,
+          style: context.textTheme.displayLarge,
         ),
       ),
     );
