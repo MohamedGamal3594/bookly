@@ -1,3 +1,3 @@
 class AppConstants {
-  static const kAppName = 'Bookly';
+  static const String kAppName = 'Bookly';
 }

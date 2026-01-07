@@ -6,5 +6,6 @@ extension BuildContextExtension on BuildContext {
   double get safeTopPadding => MediaQuery.paddingOf(this).top;
   double get safeBottomPadding => MediaQuery.paddingOf(this).bottom;
   TextTheme get textTheme => Theme.of(this).textTheme;
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
   Size get viewSize => MediaQuery.sizeOf(this);
 }

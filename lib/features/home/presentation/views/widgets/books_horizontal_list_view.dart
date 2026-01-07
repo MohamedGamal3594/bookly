@@ -1,4 +1,5 @@
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
+import 'package:bookly/core/widgets/cover_container.dart';
 import 'package:flutter/material.dart';
 
 class BooksHorizontalListView extends StatelessWidget {
@@ -16,24 +17,8 @@ class BooksHorizontalListView extends StatelessWidget {
         scrollDirection: .horizontal,
         itemCount: 10,
         separatorBuilder: (context, index) => const SizedBox(width: 16),
-        itemBuilder: (context, index) => const _BookListItem(),
-      ),
-    );
-  }
-}
-
-class _BookListItem extends StatelessWidget {
-  const _BookListItem();
-
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 0.65,
-      child: ClipRRect(
-        borderRadius: .circular(16),
-        child: Image.network(
-          'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
-          fit: .cover,
+        itemBuilder: (context, index) => const CoverContainer(
+          url: 'https://m.media-amaon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
         ),
       ),
     );
