@@ -24,6 +24,9 @@ flutter:
     - family: Tagesschrift
       fonts:
         - asset: assets/fonts/Tagesschrift.ttf
+    - family: LibreBaskerville
+      fonts:
+        - asset: assets/fonts/LibreBaskerville.ttf
 
 flutter_native_splash:
   color: "#ffffff"

@@ -1,3 +1,4 @@
+import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_horizontal_list_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_app_bar.dart';
@@ -13,9 +14,9 @@ class HomeViewBody extends StatelessWidget {
         const HomeAppBar(),
         SliverList.list(
           children: const [
-            SizedBox(height: 16),
+            SizedBox(height: AppConstants.kPadding),
             BooksHorizontalListView(),
-            SizedBox(height: 16),
+            SizedBox(height: AppConstants.kPadding),
           ],
         ),
         SliverPadding(

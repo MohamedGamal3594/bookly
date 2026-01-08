@@ -12,9 +12,11 @@ class CoverContainer extends StatelessWidget {
         child: Image.network(
           url,
           fit: .cover,
-          loadingBuilder: (_, child, loadingProgress) =>
-              Center(child: CircularProgressIndicator()),
-          errorBuilder: (context, _, _) => Icon(Icons.error_outline_sharp),
+          loadingBuilder: (_, child, loadingProgress) => loadingProgress == null
+              ? child
+              : Center(child: CircularProgressIndicator()),
+          errorBuilder: (context, _, _) =>
+              Icon(Icons.image_not_supported_outlined),
         ),
       ),
     );

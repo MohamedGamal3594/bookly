@@ -1,3 +1,4 @@
+import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/fonts.dart';
 import 'package:bookly/core/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -8,35 +9,47 @@ class AppTheme {
     titleLarge: TextStyle(fontFamily: AppFonts.logoFont, fontSize: 32),
     bodyLarge: TextStyle(fontWeight: .bold, fontSize: 24),
   );
-  static final _iconTheme = IconThemeData(size: 32);
 
   static final theme = ThemeData(
-    useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primaryDark,
       primary: AppColors.primaryDark,
       surface: AppColors.primaryLight,
       onSurface: AppColors.primaryDark,
+      surfaceTint: AppColors.lightTint,
+      surfaceContainer: AppColors.lightTint,
     ),
     textTheme: _textTheme,
-    appBarTheme: AppBarTheme(
-      iconTheme: _iconTheme.copyWith(color: AppColors.primaryDark),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.primaryDark,
+        iconSize: AppConstants.kIconSize,
+      ),
     ),
-    iconTheme: _iconTheme.copyWith(color: AppColors.primaryDark),
+    iconTheme: IconThemeData(
+      size: AppConstants.kIconSize,
+    ).copyWith(color: AppColors.primaryDark),
   );
+
   static final darkTheme = ThemeData(
-    useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       brightness: .dark,
       seedColor: AppColors.primaryLight,
       primary: AppColors.primaryLight,
       surface: AppColors.primaryDark,
       onSurface: AppColors.primaryLight,
+      surfaceTint: AppColors.darkTint,
+      surfaceContainer: AppColors.darkTint,
     ),
     textTheme: _textTheme,
-    appBarTheme: AppBarTheme(
-      iconTheme: _iconTheme.copyWith(color: AppColors.primaryLight),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.primaryLight,
+        iconSize: AppConstants.kIconSize,
+      ),
     ),
-    iconTheme: _iconTheme.copyWith(color: AppColors.primaryLight),
+    iconTheme: IconThemeData(
+      size: AppConstants.kIconSize,
+    ).copyWith(color: AppColors.primaryLight),
   );
 }
