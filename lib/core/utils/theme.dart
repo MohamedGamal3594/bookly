@@ -8,6 +8,9 @@ class AppTheme {
     displayLarge: TextStyle(fontFamily: AppFonts.logoFont),
     titleLarge: TextStyle(fontFamily: AppFonts.logoFont, fontSize: 32),
     bodyLarge: TextStyle(fontWeight: .bold, fontSize: 24),
+    labelLarge: TextStyle(fontFamily: AppFonts.bookTitleFont, fontSize: 24),
+    labelMedium: TextStyle(fontSize: 20),
+    labelSmall: TextStyle(fontSize: 16, color: AppColors.grey),
   );
 
   static final theme = ThemeData(

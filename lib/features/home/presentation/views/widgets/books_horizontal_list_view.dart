@@ -19,7 +19,7 @@ class BooksHorizontalListView extends StatelessWidget {
         itemCount: 10,
         separatorBuilder: (context, index) =>
             const SizedBox(width: AppConstants.kPadding),
-        itemBuilder: (context, index) => const CoverContainer(
+        itemBuilder: (context, index) => const CoverView(
           url:
               'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
         ),
