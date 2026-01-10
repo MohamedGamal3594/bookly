@@ -21,7 +21,9 @@ class BooklyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+      builder: (context, child) {
+        return MediaQuery.withNoTextScaling(child: DevicePreview.appBuilder(context, child!));
+      },
       theme: AppTheme.theme,
       darkTheme: AppTheme.darkTheme,
       routerConfig: AppRouter.router,

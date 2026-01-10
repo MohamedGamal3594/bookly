@@ -37,7 +37,7 @@ class _BookDetailsItem extends StatelessWidget {
       child: Row(
         children: [
           const CoverView(
-            url:
+            imageUrl:
                 'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
           ),
           const SizedBox(width: AppConstants.kPadding),

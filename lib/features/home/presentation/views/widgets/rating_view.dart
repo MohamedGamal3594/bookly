@@ -1,7 +1,6 @@
 import 'package:bookly/core/utils/colors.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RatingView extends StatelessWidget {
   const RatingView({super.key});
@@ -15,7 +14,7 @@ class RatingView extends StatelessWidget {
       children: [
         Transform.translate(
           offset: const Offset(0, 5),
-          child: FaIcon(Icons.star_rate_rounded, color: AppColors.yellow),
+          child: Icon(Icons.star_rate_rounded, color: AppColors.yellow),
         ),
         Text(
           '4.8',

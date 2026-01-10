@@ -1,6 +1,7 @@
+import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/core/widgets/cover_container.dart';
+import 'package:bookly/features/home/presentation/views/widgets/home_details_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeDetailsViewBody extends StatelessWidget {
   const HomeDetailsViewBody({super.key});
@@ -9,22 +10,15 @@ class HomeDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: .spaceBetween,
-            children: [
-              IconButton(
-                onPressed: () => context.pop(),
-                icon: Icon(FontAwesomeIcons.xmark),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.shopping_cart_outlined),
-              ),
-            ],
+        const HomeDetailsAppBar(),
+        SliverPadding(
+          padding: .symmetric(horizontal: AppConstants.kPadding),
+          sliver: SliverToBoxAdapter(
+            child: CoverView(
+              imageUrl:
+                  'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
+            ),
           ),
-          floating: true,
         ),
       ],
     );
