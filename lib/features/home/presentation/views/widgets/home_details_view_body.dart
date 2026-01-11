@@ -1,6 +1,7 @@
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:bookly/core/widgets/cover_container.dart';
+import 'package:bookly/features/home/presentation/views/widgets/books_horizontal_list_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_details_app_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/price_preview_buttons.dart';
 import 'package:bookly/features/home/presentation/views/widgets/rating_view.dart';
@@ -19,8 +20,8 @@ class HomeDetailsViewBody extends StatelessWidget {
           padding: .symmetric(
             vertical: AppConstants.kPadding,
             horizontal: context.viewSize.width < AppConstants.kPhoneBreakPoint
-                ? context.viewSize.width * 0.25
-                : context.viewSize.width * 0.35,
+                ? context.viewSize.width * 0.28
+                : context.viewSize.width * 0.3,
           ),
           sliver: SliverToBoxAdapter(
             child: CoverView(
@@ -31,7 +32,6 @@ class HomeDetailsViewBody extends StatelessWidget {
         ),
         SliverPadding(
           padding: .only(
-            bottom: AppConstants.kPadding,
             right: context.safeRightPadding,
             left: context.safeLeftPadding,
           ),
@@ -47,6 +47,32 @@ class HomeDetailsViewBody extends StatelessWidget {
                 child: Center(child: PricePreviewButtons(price: 19.99)),
               ),
             ],
+          ),
+        ),
+        SliverPadding(
+          padding: .only(bottom: context.safeBottomPadding),
+          sliver: SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              spacing: AppConstants.kPadding,
+              crossAxisAlignment: .start,
+              children: [
+                Padding(
+                  padding: .only(
+                    right: context.safeRightPadding,
+                    left: context.safeLeftPadding,
+                  ),
+                  child: Text(
+                    'You can also like',
+                    style: context.textTheme.bodyLarge,
+                  ),
+                ),
+                SizedBox(
+                  height: context.viewSize.longestSide * 0.23,
+                  child: BooksHorizontalListView(),
+                ),
+              ],
+            ),
           ),
         ),
       ],

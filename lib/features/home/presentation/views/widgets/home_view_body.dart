@@ -18,7 +18,12 @@ class HomeViewBody extends StatelessWidget {
             top: AppConstants.kPadding,
             bottom: AppConstants.kPadding,
           ),
-          sliver: SliverToBoxAdapter(child: BooksHorizontalListView()),
+          sliver: SliverToBoxAdapter(
+            child: SizedBox(
+              height: context.viewSize.longestSide * 0.3,
+              child: BooksHorizontalListView(),
+            ),
+          ),
         ),
         SliverPadding(
           padding: .only(
