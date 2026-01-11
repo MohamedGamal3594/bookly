@@ -7,4 +7,5 @@ class AppColors {
   static const lightTint = Color(0xffCAC4E4);
   static const grey = Colors.grey;
   static const yellow = Colors.yellow;
+  static const orange = Color(0xffFE835D);
 }

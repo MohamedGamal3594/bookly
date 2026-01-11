@@ -7,16 +7,24 @@ class AppTheme {
   static final _textTheme = TextTheme(
     displayLarge: TextStyle(fontFamily: AppFonts.logoFont),
     titleLarge: TextStyle(fontFamily: AppFonts.logoFont, fontSize: 32),
-    bodyLarge: TextStyle(fontWeight: .bold, fontSize: 24),
-    labelLarge: TextStyle(fontFamily: AppFonts.bookTitleFont, fontSize: 24),
-    labelMedium: TextStyle(fontSize: 20),
-    labelSmall: TextStyle(fontSize: 16, color: AppColors.grey),
+    bodyLarge: TextStyle(fontWeight: .bold, fontSize: 28),
+    bodyMedium: TextStyle(fontFamily: AppFonts.bookTitleFont, fontSize: 24),
+    labelLarge: TextStyle(fontWeight: .bold, fontSize: 22),
+    labelMedium: TextStyle(fontSize: 18),
+    labelSmall: TextStyle(fontSize: 14, color: AppColors.grey),
+  );
+
+  static final _filledButtonStyle = FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      shape: RoundedRectangleBorder(borderRadius: .zero),
+    ),
   );
 
   static final theme = ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primaryDark,
       primary: AppColors.primaryDark,
+      onPrimary: AppColors.primaryLight,
       surface: AppColors.primaryLight,
       onSurface: AppColors.primaryDark,
       surfaceTint: AppColors.lightTint,
@@ -31,7 +39,9 @@ class AppTheme {
     ),
     iconTheme: IconThemeData(
       size: AppConstants.kIconSize,
-    ).copyWith(color: AppColors.primaryDark),
+      color: AppColors.primaryDark,
+    ),
+    filledButtonTheme: _filledButtonStyle,
   );
 
   static final darkTheme = ThemeData(
@@ -39,6 +49,7 @@ class AppTheme {
       brightness: .dark,
       seedColor: AppColors.primaryLight,
       primary: AppColors.primaryLight,
+      onPrimary: AppColors.primaryDark,
       surface: AppColors.primaryDark,
       onSurface: AppColors.primaryLight,
       surfaceTint: AppColors.darkTint,
@@ -53,6 +64,8 @@ class AppTheme {
     ),
     iconTheme: IconThemeData(
       size: AppConstants.kIconSize,
-    ).copyWith(color: AppColors.primaryLight),
+      color: AppColors.primaryLight,
+    ),
+    filledButtonTheme: _filledButtonStyle,
   );
 }

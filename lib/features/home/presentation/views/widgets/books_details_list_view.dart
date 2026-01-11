@@ -1,9 +1,9 @@
-import 'package:bookly/core/utils/colors.dart';
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:bookly/core/utils/router.dart';
 import 'package:bookly/core/widgets/cover_container.dart';
 import 'package:bookly/features/home/presentation/views/widgets/rating_view.dart';
+import 'package:bookly/features/home/presentation/views/widgets/title_author_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,25 +46,10 @@ class _BookDetailsItem extends StatelessWidget {
               crossAxisAlignment: .start,
               mainAxisAlignment: .spaceEvenly,
               children: [
-                Column(
-                  mainAxisSize: .min,
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text(
-                      'Harry Potter And The Deathly Hallows',
-                      style: context.textTheme.labelLarge,
-                      maxLines: 2,
-                      overflow: .ellipsis,
-                    ),
-                    Text(
-                      'J.K. Rowling',
-                      style: context.textTheme.labelMedium?.copyWith(
-                        color: AppColors.grey,
-                      ),
-                      maxLines: 2,
-                      overflow: .ellipsis,
-                    ),
-                  ],
+                const TitleAuthorView(
+                  title: 'Harry Potter And The Deathly Hallows',
+                  author: 'J.K. Rowling',
+                  isCollapsed: false,
                 ),
                 Row(
                   mainAxisAlignment: .spaceBetween,
@@ -72,7 +57,7 @@ class _BookDetailsItem extends StatelessWidget {
                   textBaseline: .alphabetic,
                   children: [
                     Text('19.99€', style: context.textTheme.bodyLarge),
-                    const RatingView(),
+                    const RatingView(rating: 4.8, ratingsCount: 2390),
                   ],
                 ),
               ],

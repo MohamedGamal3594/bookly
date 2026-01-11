@@ -1,6 +1,10 @@
 import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:bookly/core/widgets/cover_container.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_details_app_bar.dart';
+import 'package:bookly/features/home/presentation/views/widgets/price_preview_buttons.dart';
+import 'package:bookly/features/home/presentation/views/widgets/rating_view.dart';
+import 'package:bookly/features/home/presentation/views/widgets/title_author_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeDetailsViewBody extends StatelessWidget {
@@ -12,12 +16,37 @@ class HomeDetailsViewBody extends StatelessWidget {
       slivers: <Widget>[
         const HomeDetailsAppBar(),
         SliverPadding(
-          padding: .symmetric(horizontal: AppConstants.kPadding),
+          padding: .symmetric(
+            vertical: AppConstants.kPadding,
+            horizontal: context.viewSize.width < AppConstants.kPhoneBreakPoint
+                ? context.viewSize.width * 0.25
+                : context.viewSize.width * 0.35,
+          ),
           sliver: SliverToBoxAdapter(
             child: CoverView(
               imageUrl:
                   'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
             ),
+          ),
+        ),
+        SliverPadding(
+          padding: .only(
+            bottom: AppConstants.kPadding,
+            right: context.safeRightPadding,
+            left: context.safeLeftPadding,
+          ),
+          sliver: SliverList.list(
+            children: [
+              const TitleAuthorView(
+                title: 'Harry Potter And The Deathly Hallows',
+                author: 'J.K. Rowling',
+              ),
+              const Center(child: RatingView(rating: 4.8, ratingsCount: 2390)),
+              Padding(
+                padding: const .symmetric(vertical: AppConstants.kPadding * 2),
+                child: Center(child: PricePreviewButtons(price: 19.99)),
+              ),
+            ],
           ),
         ),
       ],
