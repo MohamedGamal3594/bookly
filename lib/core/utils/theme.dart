@@ -7,16 +7,28 @@ class AppTheme {
   static final _textTheme = TextTheme(
     displayLarge: TextStyle(fontFamily: AppFonts.logoFont),
     titleLarge: TextStyle(fontFamily: AppFonts.logoFont, fontSize: 32),
-    bodyLarge: TextStyle(fontWeight: .bold, fontSize: 28),
-    bodyMedium: TextStyle(fontFamily: AppFonts.bookTitleFont, fontSize: 24),
-    labelLarge: TextStyle(fontWeight: .bold, fontSize: 22),
+    titleMedium: TextStyle(fontWeight: .bold, fontSize: 28),
+    bodyLarge: TextStyle(
+      fontWeight: .bold,
+      fontFamily: AppFonts.bookTitleFont,
+      fontSize: 22,
+    ),
+    labelLarge: TextStyle(fontWeight: .bold, fontSize: 20),
     labelMedium: TextStyle(fontSize: 18),
     labelSmall: TextStyle(fontSize: 14, color: AppColors.grey),
   );
 
-  static final _filledButtonStyle = FilledButtonThemeData(
+  static final _filledButtonTheme = FilledButtonThemeData(
     style: FilledButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: .zero),
+    ),
+  );
+
+  static final _inputDecorationTheme = InputDecorationTheme(
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: BorderSide(color: AppColors.grey, width: 2),
     ),
   );
 
@@ -41,7 +53,8 @@ class AppTheme {
       size: AppConstants.kIconSize,
       color: AppColors.primaryDark,
     ),
-    filledButtonTheme: _filledButtonStyle,
+    filledButtonTheme: _filledButtonTheme,
+    inputDecorationTheme: _inputDecorationTheme,
   );
 
   static final darkTheme = ThemeData(
@@ -66,6 +79,7 @@ class AppTheme {
       size: AppConstants.kIconSize,
       color: AppColors.primaryLight,
     ),
-    filledButtonTheme: _filledButtonStyle,
+    filledButtonTheme: _filledButtonTheme,
+    inputDecorationTheme: _inputDecorationTheme,
   );
 }

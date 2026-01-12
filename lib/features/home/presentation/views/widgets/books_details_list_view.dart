@@ -1,7 +1,7 @@
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:bookly/core/utils/router.dart';
-import 'package:bookly/core/widgets/cover_container.dart';
+import 'package:bookly/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:bookly/features/home/presentation/views/widgets/rating_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/title_author_view.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class _BookDetailsItem extends StatelessWidget {
           context.go('${AppRouter.homeView}${AppRouter.homeDetailsView}'),
       child: Row(
         children: [
-          const CoverView(
+          const BookCover(
             imageUrl:
                 'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
           ),
@@ -56,7 +56,7 @@ class _BookDetailsItem extends StatelessWidget {
                   crossAxisAlignment: .baseline,
                   textBaseline: .alphabetic,
                   children: [
-                    Text('19.99€', style: context.textTheme.bodyLarge),
+                    Text('19.99€', style: context.textTheme.labelLarge),
                     const RatingView(rating: 4.8, ratingsCount: 2390),
                   ],
                 ),

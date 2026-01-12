@@ -20,7 +20,7 @@ class TitleAuthorView extends StatelessWidget {
       children: [
         _CollapsedText(
           text: title,
-          style: context.textTheme.bodyMedium,
+          style: context.textTheme.bodyLarge,
           isCollapsed: isCollapsed,
         ),
         _CollapsedText(

@@ -1,6 +1,6 @@
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
-import 'package:bookly/core/widgets/cover_container.dart';
+import 'package:bookly/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_horizontal_list_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_details_app_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/price_preview_buttons.dart';
@@ -24,7 +24,7 @@ class HomeDetailsViewBody extends StatelessWidget {
                 : context.viewSize.width * 0.3,
           ),
           sliver: SliverToBoxAdapter(
-            child: CoverView(
+            child: BookCover(
               imageUrl:
                   'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
             ),
@@ -64,7 +64,7 @@ class HomeDetailsViewBody extends StatelessWidget {
                   ),
                   child: Text(
                     'You can also like',
-                    style: context.textTheme.bodyLarge,
+                    style: context.textTheme.titleMedium,
                   ),
                 ),
                 SizedBox(
