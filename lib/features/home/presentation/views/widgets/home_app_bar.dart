@@ -3,37 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeAppBar extends StatefulWidget {
-  const HomeAppBar({super.key});
-
+  const HomeAppBar({super.key, required this.floating});
+  final bool floating;
   @override
   State<HomeAppBar> createState() => _HomeAppBarState();
 }
 
 class _HomeAppBarState extends State<HomeAppBar> {
-  bool _isSearching = false;
+  bool _searching = false;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      forceElevated: widget.floating,
       title: Row(
         mainAxisAlignment: .spaceBetween,
         children: [
           Text(AppConstants.kAppName),
-          _isSearching
+          _searching
               ? SizedBox()
               : IconButton(
-                  onPressed: () => setState(() => _isSearching = true),
+                  onPressed: () => setState(() => _searching = true),
                   icon: Icon(Icons.search_rounded),
                 ),
         ],
       ),
-      bottom: _isSearching
+      bottom: _searching
           ? _SearchBar(
               onCancel: () {
-                setState(() => _isSearching = false);
+                setState(() => _searching = false);
               },
             )
           : null,
-      floating: true,
+      floating: widget.floating,
     );
   }
 }

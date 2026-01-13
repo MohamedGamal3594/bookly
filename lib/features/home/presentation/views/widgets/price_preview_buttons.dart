@@ -43,7 +43,7 @@ class _PreviewButton extends StatelessWidget {
       style: FilledButton.styleFrom(
         foregroundColor: AppColors.primaryLight,
         backgroundColor: AppColors.orange,
-        textStyle: TextStyle(fontWeight: .w200, fontSize: 22),
+        textStyle: TextStyle(fontWeight: .w200, fontSize: 20),
       ),
       child: Text('Free Preview', textAlign: .center),
     );

@@ -10,40 +10,42 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        const HomeAppBar(),
-        SliverPadding(
-          padding: .only(
-            top: AppConstants.kPadding,
-            bottom: AppConstants.kPadding,
-          ),
-          sliver: SliverToBoxAdapter(
-            child: SizedBox(
-              height: context.viewSize.longestSide * 0.3,
-              child: BooksHorizontalListView(),
+    return NestedScrollView(
+      floatHeaderSlivers: true,
+      headerSliverBuilder: (_, innerBoxIsScrolled) => [
+        HomeAppBar(floating: innerBoxIsScrolled),
+      ],
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverPadding(
+            padding: .symmetric(vertical: AppConstants.kPadding),
+            sliver: SliverToBoxAdapter(
+              child: SizedBox(
+                height: context.viewSize.longestSide * 0.3,
+                child: BooksHorizontalListView(),
+              ),
             ),
           ),
-        ),
-        SliverPadding(
-          padding: .only(
-            left: context.safeLeftPadding,
-            right: context.safeRightPadding,
-            bottom: AppConstants.kPadding,
+          SliverPadding(
+            padding: .only(
+              left: context.safeLeftPadding,
+              right: context.safeRightPadding,
+              bottom: AppConstants.kPadding,
+            ),
+            sliver: SliverToBoxAdapter(
+              child: Text('Best Seller', style: context.textTheme.titleMedium),
+            ),
           ),
-          sliver: SliverToBoxAdapter(
-            child: Text('Best Seller', style: context.textTheme.titleMedium),
+          SliverPadding(
+            padding: .only(
+              left: context.safeLeftPadding,
+              right: context.safeRightPadding,
+              bottom: context.safeBottomPadding,
+            ),
+            sliver: const BooksDetialsListView(),
           ),
-        ),
-        SliverPadding(
-          padding: .only(
-            left: context.safeLeftPadding,
-            right: context.safeRightPadding,
-            bottom: context.safeBottomPadding,
-          ),
-          sliver: const BooksDetialsListView(),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
