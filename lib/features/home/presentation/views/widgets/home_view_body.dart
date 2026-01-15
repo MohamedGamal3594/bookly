@@ -33,7 +33,10 @@ class HomeViewBody extends StatelessWidget {
               bottom: AppConstants.kPadding,
             ),
             sliver: SliverToBoxAdapter(
-              child: Text('Best Seller', style: context.textTheme.titleMedium),
+              child: Text(
+                'Most Relevant',
+                style: context.textTheme.titleMedium,
+              ),
             ),
           ),
           SliverPadding(
