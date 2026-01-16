@@ -8,8 +8,8 @@ import 'package:dio/dio.dart';
 class HomeRepoImpl implements HomeRepo {
   final Dio _dio = Dio(BaseOptions(baseUrl: AppConstants.baseUrl));
 
-  HomeRepoImpl._privateConstructor();
-  static final HomeRepoImpl instance = HomeRepoImpl._privateConstructor();
+  HomeRepoImpl._();
+  static final HomeRepoImpl instance = HomeRepoImpl._();
   @override
   Future<Result<List<BookModel>>> fetchNewBooks() async {
     try {

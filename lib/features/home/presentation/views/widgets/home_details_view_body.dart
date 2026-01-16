@@ -17,16 +17,16 @@ class HomeDetailsViewBody extends StatelessWidget {
       slivers: <Widget>[
         const HomeDetailsAppBar(),
         SliverPadding(
-          padding: .symmetric(
-            vertical: AppConstants.kPadding,
-            horizontal: context.viewSize.width < AppConstants.kPhoneBreakPoint
-                ? context.viewSize.width * 0.28
-                : context.viewSize.width * 0.3,
-          ),
+          padding: .symmetric(vertical: AppConstants.kPadding),
           sliver: SliverToBoxAdapter(
-            child: BookCover(
-              imageUrl:
-                  'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
+            child: Center(
+              child: SizedBox(
+                height: context.viewSize.longestSide * 0.4,
+                child: BookCover(
+                  imageUrl:
+                      'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
+                ),
+              ),
             ),
           ),
         ),
@@ -42,10 +42,6 @@ class HomeDetailsViewBody extends StatelessWidget {
                 author: 'J.K. Rowling',
               ),
               const Center(child: RatingView(rating: 4.8, ratingsCount: 2390)),
-              Padding(
-                padding: const .symmetric(vertical: AppConstants.kPadding * 2),
-                child: Center(child: PricePreviewButtons(price: 19.99)),
-              ),
             ],
           ),
         ),
@@ -57,6 +53,9 @@ class HomeDetailsViewBody extends StatelessWidget {
               spacing: AppConstants.kPadding,
               crossAxisAlignment: .start,
               children: [
+                const Spacer(),
+                const Center(child: PricePreviewButtons(price: 19.99)),
+                const Spacer(),
                 Padding(
                   padding: .only(
                     right: context.safeRightPadding,
