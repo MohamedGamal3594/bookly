@@ -1,54 +1,54 @@
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
 import 'package:bookly/core/utils/router.dart';
+import 'package:bookly/features/home/data/models/book_model.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:bookly/features/home/presentation/views/widgets/rating_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/title_author_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BooksDetialsListView extends StatelessWidget {
-  const BooksDetialsListView({super.key});
-
+class BooksDetailsListView extends StatelessWidget {
+  const BooksDetailsListView({super.key, required this.books});
+  final List<BookModel> books;
   @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
-      itemCount: 12,
+      itemCount: books.length,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: AppConstants.kPhoneBreakPoint,
         mainAxisSpacing: AppConstants.kPadding,
         crossAxisSpacing: AppConstants.kPadding,
         childAspectRatio: 2.2,
       ),
-      itemBuilder: (context, index) => const _BookDetailsItem(),
+      itemBuilder: (context, index) => _BookDetailsItem(book: books[index]),
     );
   }
 }
 
 class _BookDetailsItem extends StatelessWidget {
-  const _BookDetailsItem();
-
+  const _BookDetailsItem({required this.book});
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: .opaque,
-      onTap: () =>
-          context.go('${AppRouter.homeView}${AppRouter.homeDetailsView}'),
+      onTap: () => context.go(
+        '${AppRouter.homeView}${AppRouter.homeDetailsView}',
+        extra: book,
+      ),
       child: Row(
         children: [
-          const BookCover(
-            imageUrl:
-                'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
-          ),
+          BookCover(imageUrl: book.imageUrl),
           const SizedBox(width: AppConstants.kPadding),
           Expanded(
             child: Column(
               crossAxisAlignment: .start,
               mainAxisAlignment: .spaceEvenly,
               children: [
-                const TitleAuthorView(
-                  title: 'Harry Potter And The Deathly Hallows',
-                  author: 'J.K. Rowling',
+                TitleAuthorView(
+                  title: book.title,
+                  author: book.author,
                   isCollapsed: false,
                 ),
                 Row(
@@ -56,8 +56,15 @@ class _BookDetailsItem extends StatelessWidget {
                   crossAxisAlignment: .baseline,
                   textBaseline: .alphabetic,
                   children: [
-                    Text('19.99€', style: context.textTheme.labelLarge),
-                    const RatingView(rating: 4.8, ratingsCount: 2390),
+                    Text(
+                      book.price == null
+                          ? book.buyLink == null
+                                ? 'Not Available'
+                                : 'Free'
+                          : '${book.price}€',
+                      style: context.textTheme.labelLarge,
+                    ),
+                    RatingView(rating: book.rating, votes: book.votes),
                   ],
                 ),
               ],

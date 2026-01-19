@@ -21,7 +21,7 @@ extension ExceptionExtension on Object {
           return "Something went wrong. Please try again.";
       }
     }
-    return "Unexpected error occurred.";
+    return toString();
   }
 
   String _handleStatusCode(int? statusCode) {

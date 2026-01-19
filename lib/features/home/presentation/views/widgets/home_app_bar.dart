@@ -1,5 +1,7 @@
 import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/features/home/presentation/view_models/relevant_books_bloc/relevant_books_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeAppBar extends StatefulWidget {
@@ -30,7 +32,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
       bottom: _searching
           ? _SearchBar(
               onCancel: () {
+                context.read<RelevantBooksBloc>().searchText = '';
                 setState(() => _searching = false);
+                context.read<RelevantBooksBloc>().add(
+                  FetchRelevantBooksEvent(),
+                );
               },
             )
           : null,
@@ -49,8 +55,16 @@ class _SearchBar extends StatelessWidget implements PreferredSizeWidget {
         horizontal: AppConstants.kPadding,
         vertical: AppConstants.kPadding * 0.5,
       ),
-      child: TextField(
-        autofocus: true,
+      child: TextFormField(
+        initialValue: context.read<RelevantBooksBloc>().searchText,
+        onChanged: (value) {
+          context.read<RelevantBooksBloc>().searchText = value;
+          context.read<RelevantBooksBloc>().add(
+            FetchRelevantBooksEvent(
+              query: value == '' ? AppConstants.defaultQuery : 'intitle:$value',
+            ),
+          );
+        },
         decoration: InputDecoration(
           hintText: 'Search by title',
           suffixIcon: IconButton(

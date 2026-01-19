@@ -1,5 +1,7 @@
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/extensions/build_context_extension.dart';
+import 'package:bookly/features/home/data/models/book_model.dart';
+import 'package:bookly/features/home/presentation/view_models/author_books_bloc/author_books_bloc.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_horizontal_list_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_details_app_bar.dart';
@@ -7,10 +9,11 @@ import 'package:bookly/features/home/presentation/views/widgets/price_preview_bu
 import 'package:bookly/features/home/presentation/views/widgets/rating_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/title_author_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeDetailsViewBody extends StatelessWidget {
-  const HomeDetailsViewBody({super.key});
-
+  const HomeDetailsViewBody({super.key, required this.book});
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -22,10 +25,7 @@ class HomeDetailsViewBody extends StatelessWidget {
             child: Center(
               child: SizedBox(
                 height: context.viewSize.longestSide * 0.4,
-                child: BookCover(
-                  imageUrl:
-                      'https://m.media-amazon.com/images/I/71NAPiptyjL._AC_SL1500_.jpg',
-                ),
+                child: BookCover(imageUrl: book.imageUrl),
               ),
             ),
           ),
@@ -37,11 +37,10 @@ class HomeDetailsViewBody extends StatelessWidget {
           ),
           sliver: SliverList.list(
             children: [
-              const TitleAuthorView(
-                title: 'Harry Potter And The Deathly Hallows',
-                author: 'J.K. Rowling',
+              TitleAuthorView(title: book.title, author: book.author),
+              Center(
+                child: RatingView(rating: book.rating, votes: book.votes),
               ),
-              const Center(child: RatingView(rating: 4.8, ratingsCount: 2390)),
             ],
           ),
         ),
@@ -54,7 +53,13 @@ class HomeDetailsViewBody extends StatelessWidget {
               crossAxisAlignment: .start,
               children: [
                 const Spacer(),
-                const Center(child: PricePreviewButtons(price: 19.99)),
+                Center(
+                  child: PricePreviewButtons(
+                    price: book.price,
+                    buyLink: book.buyLink,
+                    previewLink: book.previewLink,
+                  ),
+                ),
                 const Spacer(),
                 Padding(
                   padding: .only(
@@ -62,13 +67,29 @@ class HomeDetailsViewBody extends StatelessWidget {
                     left: context.safeLeftPadding,
                   ),
                   child: Text(
-                    'You can also like',
+                    'You may also like',
                     style: context.textTheme.titleMedium,
                   ),
                 ),
                 SizedBox(
                   height: context.viewSize.longestSide * 0.23,
-                  child: BooksHorizontalListView(),
+                  child: BlocBuilder<AuthorBooksBloc, AuthorBooksState>(
+                    builder: (context, state) {
+                      return switch (state) {
+                        AuthorBooksSuccessState(books: final books) =>
+                          BooksHorizontalListView(books: books),
+                        AuthorBooksFailureState(message: final message) =>
+                          Center(
+                            child: Text(
+                              message,
+                              style: context.textTheme.labelLarge,
+                              textAlign: .center,
+                            ),
+                          ),
+                        _ => const Center(child: CircularProgressIndicator()),
+                      };
+                    },
+                  ),
                 ),
               ],
             ),
